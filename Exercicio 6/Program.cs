@@ -9,46 +9,52 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int notaCorte;
+        int notaCorte, idade;
         string A, B, C, nome, matricula, curso;
-        int idade;
-        bool cadastrar = true;
-        Console.Write("Qual sistema será feito o cadastro do aluno ? Cada sistema tem sua própria nota de corte!\nSistemas : A, B, C - (Sair)\nResposta: ");
-        string resposta = Console.ReadLine().ToUpper();
+        double nota;
 
 
-        while (cadastrar) 
+
+        for (int i = 0; i <= 30; i++)
         {
-            for (int i = 0; i <= 30; i++)
+            Console.Write("Qual sistema será feito o cadastro do aluno ? Cada sistema tem sua própria nota de corte!\nSistemas : A, B, C - (Sair)\nResposta: ");
+            string resposta = Console.ReadLine().ToUpper();
+            Console.WriteLine();
+
+            if (resposta == "SAIR" || resposta != "A" && resposta != "B" && resposta != "C") 
             {
-                Console.Write($"Informações do {i + 1} aluno");
-                Console.WriteLine();
-                Console.Write("Nome: "); nome = Console.ReadLine();
-                Console.Write("Matricula: "); matricula = Console.ReadLine();
-                Console.Write("Idade: "); Convert.ToInt32(Console.ReadLine());
-                Console.Write("Curso: "); curso = Console.ReadLine();
-
-                Console.WriteLine();
-
-                Console.Write("Qual sistema será feito o cadastro do aluno ? Cada sistema tem sua própria nota de corte!\nSistemas : A, B, C - (Sair)\nResposta: ");
-                resposta = Console.ReadLine().ToUpper();
-                i++;
-
-                if (resposta == "Sair") ; cadastrar=false;
+                Console.WriteLine("Sistema inválido ou opção de sair selecionada.");
+                return;
             }
-        }
 
-        switch (resposta)
-        {
-            case "A":
-                notaCorte = 150;
-                break;
-            case "B":
-                notaCorte = 180;
-                break;
-            case "C":
-                notaCorte = 200;
-                break;
+            Console.Write($"Informações do {i + 1}° aluno");
+            Console.WriteLine();
+            Console.Write("Nome: "); nome = Console.ReadLine();
+            Console.Write("Matricula: "); matricula = Console.ReadLine();
+            Console.Write("Idade: "); idade = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Curso: "); curso = Console.ReadLine();
+            Console.Write("Nota: "); nota = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine();
+
+            notaCorte = 0;
+            switch (resposta)
+            {
+                case "A":
+                    notaCorte = 10;
+                    break;
+                case "B":
+                    notaCorte = 18;
+                    break;
+                case "C":
+                    notaCorte = 20;
+                    break;
+            }
+
+            string resultado = (nota >= notaCorte) ? "Aprovado" : "Reprovado";
+
+            Console.WriteLine($"O aluno: {nome} foi {resultado} no sistema {resposta} com a nota {nota}.");
+
         }
     }
 }
